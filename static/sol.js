@@ -4,8 +4,9 @@ const fetch = require('node-fetch');
 const app = express();
 app.use(express.json());
 
-app.post('/static/sol.js', async (req, res) => {
-    const { wallet } = req.body;
+// Change the route to handle GET requests and extract wallet from query parameters
+app.get('/static/sol.js', async (req, res) => {
+    const { wallet } = req.query; // Extract wallet from query parameters
 
     if (!wallet) {
         return res.status(400).json({ error: 'Wallet address is required' });
